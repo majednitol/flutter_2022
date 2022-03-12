@@ -1,54 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:liquid_swipe/liquid_swipe.dart';
 
 void main() {
   runApp(MaterialApp(
     title: "awsome app",
-    home: const HomePage(),
+    home: HomePage(),
     theme: ThemeData(
-      primarySwatch: Colors.deepPurple,
+      primarySwatch: Colors.purple,
     ),
-    debugShowCheckedModeBanner: false,
   ));
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
+  HomePage({Key? key}) : super(key: key);
+  final pages = [
+    Container(
+      color: Colors.red,
+    ),
+    Container(
+      color: Colors.green,
+    ),
+    Container(
+      color: Colors.blue,
+    ),
+    Container(
+      color: Colors.yellow,
+    )
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Card and gridview'),
+          title: const Text('liquidSwipe'),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: GridView.count(
-            crossAxisCount: 2,
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 10,
-            children: [
-              Container(width: 100, height: 100, color: Colors.red),
-              Container(width: 100, height: 100, color: Colors.green),
-              Container(width: 100, height: 100, color: Colors.black),
-              Container(width: 100, height: 100, color: Colors.red),
-              Container(width: 100, height: 100, color: Colors.orange),
-              Container(width: 100, height: 100, color: Colors.blue),
-            ],
-          ),
-        )
-
-        // Center(
-        //   child: Card(
-        //     child: Container(
-        //       height: 200,
-        //       width: 200,
-        //     ),
-        //     elevation: 10,
-        //     shape: const RoundedRectangleBorder(
-        //         borderRadius:
-        //             BorderRadius.only(bottomLeft: Radius.circular(20))),
-        //   ),
-        // )
-        );
+        body: LiquidSwipe(pages: pages));
   }
 }
