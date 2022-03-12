@@ -1,40 +1,44 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MaterialApp(
+  runApp(MaterialApp(
     title: "awsome app",
-    home: HomePage(),
-    // theme: ThemeData(
-    //   primarySwatch: Colors.purple,
-    // ),
+    home: const HomePage(),
+    theme: ThemeData(
+      primarySwatch: Colors.purple,
+    ),
   ));
 }
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Gradient color in appBar and body '),
-        flexibleSpace: Container(
-            decoration: const BoxDecoration(
-                gradient:
-                    LinearGradient(colors: [Colors.purple, Colors.orange]))),
-      ),
-      body: Container(
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [Colors.red, Colors.green])),
-      ),
-    );
+        appBar: AppBar(
+          title: const Text('textField'),
+        ),
+        body: const Center(
+          child: Padding(
+            padding: EdgeInsets.all(32.0),
+            child: TextField(
+              // obscureText: true,
+              // obscuringCharacter: "#",
+              maxLength: 5,
+              maxLines: 2,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "number",
+                  hintText: 'enter your number',
+                  labelStyle: TextStyle(fontSize: 30),
+                  prefix: Text('+880 '),
+                  suffix: Text('@gmail.com'),
+                  suffixIcon: Icon(Icons.chevron_right),
+                  prefixIcon: Icon(Icons.phone)),
+            ),
+          ),
+        ));
   }
 }
