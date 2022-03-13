@@ -22,30 +22,19 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Toast '),
+          title: const Text('Rich text '),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "learn flutter",
-              style: TextStyle(fontSize: currentvalue),
-            ),
-            Slider(
-                activeColor: Colors.amber,
-                inactiveColor: Colors.red,
-                divisions: 5,
-                label: currentvalue.round().toString(),
-                min: 10,
-                max: 50,
-                value: currentvalue,
-                onChanged: (value) {
-                  setState(() {
-                    currentvalue = value;
-                    print(currentvalue);
-                  });
-                })
-          ],
+        body: Center(
+          child: RichText(
+              text: const TextSpan(
+                  text: 'dont you have van account ',
+                  style: TextStyle(fontSize: 20, color: Colors.black),
+                  children: [
+                TextSpan(
+                  text: "sign up",
+                  style: TextStyle(fontSize: 20, color: Colors.red),
+                )
+              ])),
         ));
   }
 }
