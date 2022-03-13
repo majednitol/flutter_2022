@@ -1,5 +1,6 @@
-
 // problem this topic
+
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 
@@ -21,13 +22,27 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Stack(
-        alignment: Alignment.center,
-        children: [Container(width: 300, height: 300, color: Colors.red),
-        BackdropFilter(filter: ImageFilter.blur(sigmaX))
-        ],
-      ),
+    return Column(
+      children: [
+        Center(
+            child: Transform.rotate(
+                angle: pi / 4,
+                child: Container(height: 100, width: 100, color: Colors.red))),
+        SizedBox(
+          height: 100,
+        ),
+        Center(
+            child: Transform.scale(
+                scale: 2.5,
+                child: Container(height: 100, width: 100, color: Colors.red))),
+        SizedBox(
+          height: 100,
+        ),
+        Center(
+            child: Transform.translate(
+                offset: Offset(20, 60),
+                child: Container(height: 100, width: 100, color: Colors.red))),
+      ],
     );
   }
 }
