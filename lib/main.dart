@@ -1,47 +1,70 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MaterialApp(
-    title: "flutter",
-    home: const HomePage(),
-    theme: ThemeData(primarySwatch: Colors.blue),
-    debugShowCheckedModeBanner: false,
-  ));
+  runApp(const MyApp());
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+// MyApp is a StatefulWidget. This allows updating the state of the
+// widget when an item is removed.
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  MyAppState createState() {
+    return MyAppState();
+  }
 }
 
-class _HomePageState extends State<HomePage> {
-  var currentvalue = "choice one";
+class MyAppState extends State<MyApp> {
+  final items = List<String>.generate(20, (i) => 'Item ${i + 1}');
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    const title = 'Dismissing Items';
+
+    return MaterialApp(
+      title: title,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Scaffold(
         appBar: AppBar(
-          title: const Text('DropDownButton'),
+          title: const Text(title),
         ),
-        body: Center(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(currentvalue),
-            DropdownButton(
-              items: const [
-                DropdownMenuItem(value: 'One', child: Text('one')),
-                DropdownMenuItem(value: 'Two', child: Text('Two')),
-                DropdownMenuItem(value: 'Three', child: Text('Three'))
-              ],
-              onChanged: (value) {
+        body: ListView.builder(
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            final item = items[index];
+            return Dismissible(
+              // Each Dismissible must contain a Key. Keys allow Flutter to
+              // uniquely identify widgets.
+              key: Key(item),
+              // Provide a function that tells the app
+              // what to do after an item has been swiped away.
+              onDismissed: (direction) {
+                // Remove the item from the data source.
                 setState(() {
-                  currentvalue = value.toString();
+                  items.removeAt(index);
                 });
+
+                // Then show a snackbar.
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text('$item dismissed')));
               },
-            )
-          ],
-        )));
+              // Show a red background as the item is swiped away.
+              background:
+                  Container(color: Colors.red, child: const Icon(Icons.delete)),
+              secondaryBackground: Container(
+                color: Colors.blue,
+                child: const Icon(Icons.delete),
+              ),
+              child: ListTile(
+                title: Text(item),
+              ),
+            );
+          },
+        ),
+      ),
+    );
   }
 }
