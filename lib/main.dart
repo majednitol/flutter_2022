@@ -21,24 +21,33 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Switch'),
+        title: const Text(' ExpansionTile'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              selected ? "On" : "Off",
-              style: const TextStyle(fontSize: 30),
-            ),
-            Switch(
-                value: selected,
-                onChanged: (value) {
-                  setState(() {
-                    selected = value;
-                  });
-                })
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ExpansionTile(
+                title: const Text('majedRahman7@gmail.com'),
+                subtitle: const Text('gmail account'),
+                leading: const Icon(Icons.account_circle_rounded),
+                trailing: const Icon(Icons.download),
+                children: [
+                  Container(width: 300, height: 300, color: Colors.red)
+                ],
+              ),
+              ExpansionTile(
+                title: const Text('majedRahman7@gmail.com'),
+                subtitle: const Text('gmail account'),
+                leading: const Icon(Icons.account_circle_rounded),
+                trailing: const Icon(Icons.download),
+                children: [
+                  Container(width: 300, height: 300, color: Colors.red)
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
