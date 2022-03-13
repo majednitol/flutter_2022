@@ -17,24 +17,31 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var currentvalue = 10.0;
+  var currentvalue = "choice one";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Rich text '),
+          title: const Text('DropDownButton'),
         ),
         body: Center(
-          child: RichText(
-              text: const TextSpan(
-                  text: 'dont you have van account ',
-                  style: TextStyle(fontSize: 20, color: Colors.black),
-                  children: [
-                TextSpan(
-                  text: "sign up",
-                  style: TextStyle(fontSize: 20, color: Colors.red),
-                )
-              ])),
-        ));
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(currentvalue),
+            DropdownButton(
+              items: const [
+                DropdownMenuItem(value: 'One', child: Text('one')),
+                DropdownMenuItem(value: 'Two', child: Text('Two')),
+                DropdownMenuItem(value: 'Three', child: Text('Three'))
+              ],
+              onChanged: (value) {
+                setState(() {
+                  currentvalue = value.toString();
+                });
+              },
+            )
+          ],
+        )));
   }
 }
