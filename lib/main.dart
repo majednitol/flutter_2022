@@ -4,7 +4,7 @@ void main() {
   runApp(MaterialApp(
     title: "flutter",
     home: const HomePage(),
-    theme: ThemeData(primarySwatch: Colors.amber),
+    theme: ThemeData(primarySwatch: Colors.red),
   ));
 }
 
@@ -21,21 +21,21 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('CheckBox'),
+        title: const Text('Switch'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              selected ? "checked" : "unchecked",
+              selected ? "On" : "Off",
               style: const TextStyle(fontSize: 30),
             ),
-            Checkbox(
+            Switch(
                 value: selected,
                 onChanged: (value) {
                   setState(() {
-                    selected = value!;
+                    selected = value;
                   });
                 })
           ],
