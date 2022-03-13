@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Toast '),
+          title: const Text('Slider '),
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
