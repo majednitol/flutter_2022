@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Title'),
+          title: Text('Tooltip'),
         ),
         body: Center(
           child: Column(
