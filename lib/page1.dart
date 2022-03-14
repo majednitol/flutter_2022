@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
-class Page1 extends StatelessWidget {
+class Page1 extends StatefulWidget {
  final String message;
   Page1(this.message);
 
+  @override
+  State<Page1> createState() => _Page1State();
+}
+
+class _Page1State extends State<Page1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +17,7 @@ class Page1 extends StatelessWidget {
       ),
       body: Center(
         child: Container(
-          child: Text(message),
+          child: Text(widget.message),
         ),
       ),
     );
