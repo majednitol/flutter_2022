@@ -21,17 +21,17 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Title'),
+          title: Text('data pass one to another page'),
         ),
         body: Center(
             child: ElevatedButton(
           child: Text("click here"),
           onPressed: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: ((context) =>
-                        Page1("data sent from another main page"))));
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Page1("data sent from main page")),
+            );
           },
         )));
   }

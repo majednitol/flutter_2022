@@ -5,7 +5,7 @@ class Page1 extends StatefulWidget {
   Page1(this.message);
 
   @override
-  State<Page1> createState() => _Page1State();
+  _Page1State createState() => _Page1State();
 }
 
 class _Page1State extends State<Page1> {
@@ -13,13 +13,14 @@ class _Page1State extends State<Page1> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('another page'),
+        title: Text('another page'),
       ),
-      body: Center(
-        child: Container(
-          child: Text(widget.message),
-        ),
-      ),
+      body: Container(
+          child: Center(
+              child: Text(
+        widget.message,
+        style: TextStyle(fontSize: 30, color: Colors.red),
+      ))),
     );
   }
 }
