@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Page1 extends StatelessWidget {
-  String message;
+ final String message;
   Page1(this.message);
 
   @override
