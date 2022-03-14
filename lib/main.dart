@@ -22,24 +22,35 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Title'),
+          title: Text('DataTable'),
         ),
         body: Center(
-          child: Column(
-            children: [
-              IconButton(
-                icon: Icon(Icons.call),
-                onPressed: () {},
-                tooltip: "call",
-              ),
-              Tooltip(
-                message: "container",
-                child: Container(
-                  height: 200,
-                  width: 100,
-                  color: Colors.black,
-                ),
-              )
+          child: DataTable(
+            columns: [
+              DataColumn(label: Text("Name")),
+              DataColumn(label: Text("Age")),
+              DataColumn(label: Text("University")),
+              DataColumn(label: Text("Id")),
+            ],
+            rows: [
+              DataRow(cells: [
+                DataCell(Text("majed")),
+                DataCell(Text("21")),
+                DataCell(Text("Diu")),
+                DataCell(Text("708")),
+              ]),
+              DataRow(cells: [
+                DataCell(Text("majed")),
+                DataCell(Text("21")),
+                DataCell(Text("Diu")),
+                DataCell(Text("708")),
+              ]),
+              DataRow(cells: [
+                DataCell(Text("majed")),
+                DataCell(Text("21")),
+                DataCell(Text("Diu")),
+                DataCell(Text("708")),
+              ])
             ],
           ),
         ));
