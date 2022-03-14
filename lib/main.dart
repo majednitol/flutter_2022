@@ -20,19 +20,55 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('data pass one to another page'),
-        ),
-        body: Center(
-            child: ElevatedButton(
-          child: Text("click here"),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => Page1("data sent from main page")),
-            );
-          },
-        )));
+      appBar: AppBar(
+        title: Text('Drawer'),
+      ),
+      drawer: Drawer(
+        child: ListView(children: [
+          UserAccountsDrawerHeader(
+            accountName: Text('majedur rahman'),
+            accountEmail: Text('majed7@gmail.com'),
+            currentAccountPicture: CircleAvatar(
+              child: Text('D'),
+            ),
+            decoration: BoxDecoration(color: Colors.red),
+            otherAccountsPictures: [
+              CircleAvatar(child: Text('H')),
+              CircleAvatar(child: Text('H')),
+            ],
+          ),
+          ListTile(
+            title: Text('page 1'),
+            trailing: Icon(Icons.arrow_forward_rounded),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Page1()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('page 1'),
+            trailing: Icon(Icons.arrow_forward_rounded),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Page1()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('page 1'),
+            trailing: Icon(Icons.arrow_forward_rounded),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Page1()),
+              );
+            },
+          ),
+        ]),
+      ),
+    );
   }
 }
