@@ -1,6 +1,5 @@
-// it works only browser not emulator
-
 import 'package:flutter/material.dart';
+import 'package:flutter_2022/page1.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -22,37 +21,18 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('DataTable'),
+          title: Text('Title'),
         ),
         body: Center(
-          child: DataTable(
-            columns: [
-              DataColumn(label: Text("Name")),
-              DataColumn(label: Text("Age")),
-              DataColumn(label: Text("University")),
-              DataColumn(label: Text("Id")),
-            ],
-            rows: [
-              DataRow(cells: [
-                DataCell(Text("majed")),
-                DataCell(Text("21")),
-                DataCell(Text("Diu")),
-                DataCell(Text("708")),
-              ]),
-              DataRow(cells: [
-                DataCell(Text("majed")),
-                DataCell(Text("21")),
-                DataCell(Text("Diu")),
-                DataCell(Text("708")),
-              ]),
-              DataRow(cells: [
-                DataCell(Text("majed")),
-                DataCell(Text("21")),
-                DataCell(Text("Diu")),
-                DataCell(Text("708")),
-              ])
-            ],
-          ),
-        ));
+            child: ElevatedButton(
+          child: Text("click here"),
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: ((context) =>
+                        Page1("data sent from another main page"))));
+          },
+        )));
   }
 }
