@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 
-class Page1 extends StatelessWidget {
-  String message;
+class Page1 extends StatefulWidget {
+ final String message;
   Page1(this.message);
 
+  @override
+  _Page1State createState() => _Page1State();
+}
+
+class _Page1State extends State<Page1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('another page'),
+        title: Text('another page'),
       ),
-      body: Center(
-        child: Container(
-          child: Text(message),
-        ),
-      ),
+      body: Container(
+          child: Center(
+              child: Text(
+        widget.message,
+        style: TextStyle(fontSize: 30, color: Colors.red),
+      ))),
     );
   }
 }
