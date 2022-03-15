@@ -10,7 +10,6 @@ void main() {
       nextScreen: Login(),
       splashTransition: SplashTransition.decoratedBoxTransition,
     ),
-    theme: ThemeData(primarySwatch: Colors.green),
     debugShowCheckedModeBanner: false,
   ));
 }
