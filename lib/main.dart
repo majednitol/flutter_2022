@@ -10,7 +10,6 @@ void main() {
       nextScreen: Login(),
       splashTransition: SplashTransition.decoratedBoxTransition,
     ),
-    debugShowCheckedModeBanner: false
-    ,
+    debugShowCheckedModeBanner: false,
   ));
 }
