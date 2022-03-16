@@ -14,7 +14,7 @@ class Recived extends StatelessWidget {
         title: const Text('another page'),
       ),
       body: Center(
-        child: Text(providerdata.value.toString(),style: TextStyle(fontSize:50,color:Colors.amber),),
+        child: Text(providerdata.value.toString(),style: TextStyle(fontSize:50,color:Colors.red),),
       ),
     );
   }
