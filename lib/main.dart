@@ -1,15 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_2022/page1.dart';
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 
 void main() {
   runApp(MaterialApp(
-    title: "flutter",
-    home: AnimatedSplashScreen(
-      splash: "assets/a.png",
-      nextScreen: Login(),
-      splashTransition: SplashTransition.decoratedBoxTransition,
-    ),
-    debugShowCheckedModeBanner: false,
+    title: "Flutter",
+    home: HomePage(),
+    theme: ThemeData(primarySwatch: Colors.blue),
   ));
+}
+
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Title'),
+      ),
+      body: Center(
+        child: Container(
+            color: Colors.green,
+            height: MediaQuery.of(context).size.height / 3,
+            width: MediaQuery.of(context).size.width / 2),
+      ),
+    );
+  }
 }
