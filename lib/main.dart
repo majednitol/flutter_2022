@@ -52,6 +52,7 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:flutter_2022/data.dart';
 
 import 'package:provider/provider.dart';
 
@@ -100,7 +101,18 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     providerdata.increment();
                   },
-                  child: Text("click here"))
+                  child: Text("click here")),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.red,
+                  ),
+                  onPressed: () {
+                  Navigator.push(
+                   context,
+                   MaterialPageRoute(builder: (context) => Recived()),
+                   );
+                  },
+                  child: Text("sent"))
             ],
           ),
         ));
