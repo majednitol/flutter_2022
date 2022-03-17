@@ -14,39 +14,28 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Modal bottom sheet'),
+        title: const Text('Alert Dialog'),
       ),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            showModalBottomSheet(
+            showDialog(
                 context: context,
                 builder: (context) {
-                  return Container(
-                    height: 250,
-                    child: Column(
-                      children: [
-                        ListTile(
-                          title: const Text('one'),
-                          subtitle: Text("this is one"),
-                          trailing: Icon(Icons.alarm),
-                        ),
-                        ListTile(
-                          title: const Text('one'),
-                          subtitle: Text("this is one"),
-                          trailing: Icon(Icons.alarm),
-                        ),
-                        ListTile(
-                          title: const Text('one'),
-                          subtitle: Text("this is one"),
-                          trailing: Icon(Icons.alarm),
-                        ),
-                      ],
-                    ),
+                  return AlertDialog(
+                    title: const Text('Alert'),
+                    content: Text("this is simple alert dialog"),
+                    actions: [
+                      ElevatedButton(
+                          child: Text("ok"),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          })
+                    ],
                   );
                 });
           },
-          child: Text('click'),
+          child: Text("Alert"),
         ),
       ),
     );
