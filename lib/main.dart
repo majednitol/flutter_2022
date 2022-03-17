@@ -10,6 +10,7 @@ void main() {
   runApp(MaterialApp(
     title: "flutter",
     home: HomePage(),
+    debugShowCheckedModeBanner: false,
   ));
 }
 
