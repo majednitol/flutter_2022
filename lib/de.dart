@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class DetailView extends StatelessWidget {
   var reciverData;
   DetailView({this.reciverData});
