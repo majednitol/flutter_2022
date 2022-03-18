@@ -1,8 +1,4 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_2022/de.dart';
-import 'package:http/http.dart' as http;
 
 void main() {
   runApp(MaterialApp(
@@ -18,49 +14,36 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var data;
-  var url = ("http://reqres.in/api/users?page=2");
-  Future getData() async {
-    var response = await http.get(Uri.parse(url));
-    setState(() {
-      var decode = json.decode(response.body);
-      data = decode["data"];
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    this.getData();
-  }
+  bool check = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('json data feaching by http request'),
+        title: const Text('Animated crossfade'),
       ),
-      body: Center(
-        child: data == null
-            ? Center(child: CircularProgressIndicator())
-            : Container(
-                child: ListView.builder(
-                  itemCount: data.length,
-                  itemBuilder: (BuildContext context, index) {
-                    return ListTile(
-                        title: Text(data[index]["first_name"]),
-                        subtitle: Text(data[index]["email"]),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    DetailView(reciverData: data[index])),
-                          );
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          AnimatedCrossFade(
+              firstChild: Container(
+                  height: 200,
+                  color: Colors.deepOrange,
+                  child: Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          check = false;
                         });
-                  },
-                ),
-              ),
+                      },
+                      child: Text('sign in'),
+                    ),
+                  )),
+              secondChild: Center(child: Text('Create',style: TextStyle(color: Colors.amber,fontSize: 50),)),
+              crossFadeState:
+                  check ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+              duration: Duration(seconds: 1))
+        ],
       ),
     );
   }
