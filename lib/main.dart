@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(MaterialApp(
     home: HomePage(),
+    theme: ThemeData(primarySwatch: Colors.deepOrange),
   ));
 }
 
@@ -28,7 +29,7 @@ class _HomePageState extends State<HomePage> {
           AnimatedCrossFade(
               firstChild: Container(
                   height: 200,
-                  color: Colors.deepOrange,
+                  color: Colors.blue,
                   child: Center(
                     child: ElevatedButton(
                       onPressed: () {
@@ -39,7 +40,7 @@ class _HomePageState extends State<HomePage> {
                       child: Text('sign in'),
                     ),
                   )),
-              secondChild: Center(child: Text('Create',style: TextStyle(color: Colors.amber,fontSize: 50),)),
+              secondChild: Center(child: Text('Create',style: TextStyle(color: Colors.red,fontSize: 50),)),
               crossFadeState:
                   check ? CrossFadeState.showFirst : CrossFadeState.showSecond,
               duration: Duration(seconds: 1))
