@@ -40,26 +40,28 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('json data feaching by http request'),
       ),
-      body: data == null
-          ? Center(child: CircularProgressIndicator())
-          : Container(
-              child: ListView.builder(
-                itemCount: data.length,
-                itemBuilder: (BuildContext context, index) {
-                  return ListTile(
-                      title: Text(data[index]["first_name"]),
-                      subtitle: Text(data[index]["email"]),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  DetailView(reciverData: data[index])),
-                        );
-                      });
-                },
+      body: Center(
+        child: data == null
+            ? Center(child: CircularProgressIndicator())
+            : Container(
+                child: ListView.builder(
+                  itemCount: data.length,
+                  itemBuilder: (BuildContext context, index) {
+                    return ListTile(
+                        title: Text(data[index]["first_name"]),
+                        subtitle: Text(data[index]["email"]),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    DetailView(reciverData: data[index])),
+                          );
+                        });
+                  },
+                ),
               ),
-            ),
+      ),
     );
   }
 }
