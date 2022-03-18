@@ -15,36 +15,28 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool check = true;
-
+  bool value = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Animated crossfade'),
+        title: Text("Animated Container"),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          AnimatedCrossFade(
-              firstChild: Container(
-                  height: 200,
-                  color: Colors.blue,
-                  child: Center(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          check = false;
-                        });
-                      },
-                      child: Text('sign in'),
-                    ),
-                  )),
-              secondChild: Center(child: Text('Create',style: TextStyle(color: Colors.red,fontSize: 50),)),
-              crossFadeState:
-                  check ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-              duration: Duration(seconds: 1))
-        ],
+      floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              setState(() {
+                value=!value;
+              });
+            },
+            child: Icon(Icons.add),
+          ),
+      body: Center(
+        child: AnimatedContainer(
+          height: value == false ? 150 : 350,
+          width: value == false ? 150 : 350,
+          color: Colors.deepOrange,
+          duration: Duration(seconds: 4),
+        ),
       ),
     );
   }
