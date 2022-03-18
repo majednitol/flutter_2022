@@ -10,20 +10,24 @@ class Page2 extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ElevatedButton(
-            onPressed: (() {
-              Navigator.pop(context);
-            }),
-            child: Text('2nd page pop'),
+          Center(
+            child: ElevatedButton(
+              onPressed: (() {
+                Navigator.pop(context);
+              }),
+              child: Text('2nd page pop'),
+            ),
           ),
-          ElevatedButton(
-            onPressed: (() {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Page3()),
-              );
-            }),
-            child: Text('2nd page'),
+          Center(
+            child: ElevatedButton(
+              onPressed: (() {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Page3()),
+                );
+              }),
+              child: Text('2nd page'),
+            ),
           ),
         ],
       ),
