@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -15,29 +16,39 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool value = false;
+  final TextEditingController controller = new TextEditingController();
+  void saveText(String text) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString("text", text);
+  }
+
+  void readText() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? savedvalue = prefs.getString("text");
+    if (savedvalue != null) {
+      controller.text = savedvalue;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    readText();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Animated Container"),
-      ),
-      floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              setState(() {
-                value=!value;
-              });
-            },
-            child: Icon(Icons.add),
-          ),
-      body: Center(
-        child: AnimatedContainer(
-          height: value == false ? 150 : 350,
-          width: value == false ? 150 : 350,
-          color: Colors.deepOrange,
-          duration: Duration(seconds: 4),
+        appBar: AppBar(
+          title: Text("Shared preference"),
         ),
-      ),
-    );
+        body: Container(
+          child: TextField(
+            controller: controller,
+            onChanged: (val) {
+              saveText(val);
+            },
+          ),
+        ));
   }
 }
