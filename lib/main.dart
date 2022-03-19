@@ -141,10 +141,22 @@ class _HomePageState extends State<HomePage> {
 
                         /// Confirm Password
                         TextFormField(
-                          decoration: const InputDecoration(
+                          obscureText: _isObscure,
+                          decoration: InputDecoration(
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  _isObscure
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _isObscure = !_isObscure;
+                                  });
+                                },
+                              ),
                               icon: Icon(Icons.password),
                               labelText: 'Confirm Password'),
-                          obscureText: true,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'This field is required';
