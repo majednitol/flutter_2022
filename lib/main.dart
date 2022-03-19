@@ -24,7 +24,9 @@ class _HomePageState extends State<HomePage> {
   String userName = '';
   String password = '';
   String confirmPassword = '';
+  final myController = TextEditingController();
   String phone = '';
+  bool _isObscure = true;
 
   // This function is triggered when the user press the "Sign Up" button
   void _trySubmitForm() {
@@ -108,10 +110,22 @@ class _HomePageState extends State<HomePage> {
 
                         /// Password
                         TextFormField(
-                          decoration: const InputDecoration(
+                          obscureText: _isObscure,
+                          decoration: InputDecoration(
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  _isObscure
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _isObscure = !_isObscure;
+                                  });
+                                },
+                              ),
                               icon: Icon(Icons.password),
                               labelText: 'Password'),
-                          obscureText: true,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'This field is required';
