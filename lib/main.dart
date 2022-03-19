@@ -29,22 +29,18 @@ class _HomePageState extends State<HomePage> {
   // Define a key to access the form
   final _formKey = GlobalKey<FormState>();
 
-  String _userEmail = '';
-  String _userName = '';
-  String _password = '';
-  String _confirmPassword = '';
+  String userEmail = '';
+  String userName = '';
+  String password = '';
+  String confirmPassword = '';
 
   // This function is triggered when the user press the "Sign Up" button
   void _trySubmitForm() {
-    final bool? isValid = _formKey.currentState?.validate();
+    final bool isValid = _formKey.currentState!.validate();
     if (isValid == true) {
-      debugPrint('Everything looks good!');
-      debugPrint(_userEmail);
-      debugPrint(_userName);
-      debugPrint(_password);
-      debugPrint(_confirmPassword);
-
-      
+      print("successful");
+    } else {
+      print("UnSuccessfull");
     }
   }
 
@@ -68,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                       TextFormField(
                         decoration: const InputDecoration(labelText: 'Email'),
                         validator: (value) {
-                          if (value == null || value.trim().isEmpty) {
+                          if (value!.isEmpty) {
                             return 'Please enter your email address';
                           }
                           // Check if the entered email has the right format
@@ -78,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                           // Return null if the entered email is valid
                           return null;
                         },
-                        onChanged: (value) => _userEmail = value,
+                        onChanged: (value) => userEmail = value,
                       ),
 
                       /// username
@@ -86,16 +82,16 @@ class _HomePageState extends State<HomePage> {
                         decoration:
                             const InputDecoration(labelText: 'Username'),
                         validator: (value) {
-                          if (value == null || value.trim().isEmpty) {
+                          if ( value!.isEmpty) {
                             return 'This field is required';
                           }
-                          if (value.trim().length < 4) {
+                          if (value.length < 4) {
                             return 'Username must be at least 4 characters in length';
                           }
                           // Return null if the entered username is valid
                           return null;
                         },
-                        onChanged: (value) => _userName = value,
+                        onChanged: (value) => userName = value,
                       ),
 
                       /// Password
@@ -104,16 +100,16 @@ class _HomePageState extends State<HomePage> {
                             const InputDecoration(labelText: 'Password'),
                         obscureText: true,
                         validator: (value) {
-                          if (value == null || value.trim().isEmpty) {
+                          if (value!.isEmpty) {
                             return 'This field is required';
                           }
-                          if (value.trim().length < 8) {
+                          if (value.length < 8) {
                             return 'Password must be at least 8 characters in length';
                           }
                           // Return null if the entered password is valid
                           return null;
                         },
-                        onChanged: (value) => _password = value,
+                        onChanged: (value) => password = value,
                       ),
 
                       /// Confirm Password
@@ -122,17 +118,17 @@ class _HomePageState extends State<HomePage> {
                             labelText: 'Confirm Password'),
                         obscureText: true,
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
+                          if ( value!.isEmpty) {
                             return 'This field is required';
                           }
 
-                          if (value != _password) {
+                          if (value != password) {
                             return 'Confimation password does not match the entered password';
                           }
 
                           return null;
                         },
-                        onChanged: (value) => _confirmPassword = value,
+                        onChanged: (value) => confirmPassword= value,
                       ),
                       const SizedBox(height: 20),
                       Container(
