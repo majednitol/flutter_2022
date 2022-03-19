@@ -2,20 +2,11 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Kindacode.com',
-      home: HomePage(),
-    );
-  }
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: 'Kindacode.com',
+    home: HomePage(),
+  ));
 }
 
 class HomePage extends StatefulWidget {
@@ -81,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                           },
                           onChanged: (value) => userEmail = value,
                         ),
-                  
+
                         /// username
                         TextFormField(
                           decoration: const InputDecoration(
@@ -98,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                           },
                           onChanged: (value) => userName = value,
                         ),
-                  
+
                         TextFormField(
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
@@ -116,11 +107,12 @@ class _HomePageState extends State<HomePage> {
                           },
                           onChanged: (String value) => phone = value,
                         ),
-                  
+
                         /// Password
                         TextFormField(
                           decoration: const InputDecoration(
-                              icon: Icon(Icons.password), labelText: 'Password'),
+                              icon: Icon(Icons.password),
+                              labelText: 'Password'),
                           obscureText: true,
                           validator: (value) {
                             if (value!.isEmpty) {
@@ -134,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                           },
                           onChanged: (value) => password = value,
                         ),
-                  
+
                         /// Confirm Password
                         TextFormField(
                           decoration: const InputDecoration(
@@ -145,11 +137,11 @@ class _HomePageState extends State<HomePage> {
                             if (value!.isEmpty) {
                               return 'This field is required';
                             }
-                  
+
                             if (value != password) {
                               return 'Confimation password does not match the entered password';
                             }
-                  
+
                             return null;
                           },
                           onChanged: (value) => confirmPassword = value,
