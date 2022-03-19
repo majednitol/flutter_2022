@@ -41,7 +41,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Container(
         color: Colors.deepOrange,
-        alignment: Alignment.center,
         child: Center(
           child: Card(
             margin: const EdgeInsets.symmetric(horizontal: 35),
@@ -51,7 +50,6 @@ class _HomePageState extends State<HomePage> {
                   key: formKey,
                   child: SingleChildScrollView(
                     child: Column(
-                      mainAxisSize: MainAxisSize.min,
                       children: [
                         /// Eamil
                         TextFormField(
