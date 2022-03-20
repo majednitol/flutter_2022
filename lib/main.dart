@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                               return 'This field is required';
                             }
                             if (value.length < 4) {
-                              return 'Username must be at least 4 characters in length';
+                              return 'Username must be at least 4 characters';
                             }
                             // Return null if the entered username is valid
                             return null;
@@ -101,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                               return 'This field is required';
                             }
                             if (value.length != 10) {
-                              return 'phone no must be at least 11 characters in length';
+                              return 'phone no must be at least 11 characters ';
                             }
                             return null;
                           },
