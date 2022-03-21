@@ -1,64 +1,56 @@
-import 'dart:io';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyHomePage(),
-    );
-  }
+void main() {
+  runApp(MaterialApp(
+    home: HomePage(),
+  ));
 }
 
-class MyHomePage extends StatefulWidget {
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  File? _image;
-  final picker = ImagePicker();
-
-  Future fromCamera() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.camera);
-
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-      } else {
-        print('No image selected');
-      }
-    });
+class _HomePageState extends State<HomePage> {
+  void showAlertDialog() {
+    showDialog(
+        context: context,
+        barrierColor: Colors.red.withOpacity(0.3),
+        builder: (context) {
+          return BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+            child: AlertDialog(
+              title: Text("AlertDialog"),
+              content: Text("this is a alert dialog"),
+              actions: [
+                TextButton(
+                    onPressed: (() {
+                      Navigator.pop(context);
+                    }),
+                    child: Text('ok'))
+              ],
+            ),
+          );
+        });
   }
-Future fromGallery() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.camera);
 
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-      } else {
-        print('No image selected');
-      }
-    });
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Image Picker Example'),
+        title: Text('BackdropFilter'),
       ),
       body: Center(
-        child:
-            _image == null ? Text('No image selected.') : Image.file(_image!),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: fromCamera,
-        tooltip: 'Pick Image',
-        child: Icon(Icons.add_a_photo),
+        child: Container(
+          child: FloatingActionButton(
+            onPressed: showAlertDialog,
+            child: Icon(Icons.add),
+          ),
+        ),
       ),
     );
   }
