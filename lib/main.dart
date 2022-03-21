@@ -20,21 +20,31 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late File _image;
+  File? _image;
   final picker = ImagePicker();
 
-  Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.camera);
+  Future fromCamera() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.camera);
 
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
       } else {
-        print('No image selected.');
+        print('No image selected');
       }
     });
   }
+Future fromGallery() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.camera);
 
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected');
+      }
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,13 +52,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('Image Picker Example'),
       ),
       body: Center(
-        // ignore: unnecessary_null_comparison
-        child: _image == null
-            ? Text('No image selected.')
-            : Image.file(_image),
+        child:
+            _image == null ? Text('No image selected.') : Image.file(_image!),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: getImage,
+        onPressed: fromCamera,
         tooltip: 'Pick Image',
         child: Icon(Icons.add_a_photo),
       ),
