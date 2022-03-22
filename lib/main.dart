@@ -20,20 +20,27 @@ class HomePage extends StatelessWidget {
           title: const Text('Stack and positioned'),
         ),
         body: Center(
-          child: Stack(children: [
-            Container(width: 300, height: 300, color: Colors.amber),
-            Container(width: 300, height: 200, color: Colors.red),
-            Container(width: 300, height: 100, color: Colors.green),
-            Positioned(
+          child: Stack(
+            children: [
+              Container(width: 300, height: 300, color: Colors.red),
+              Container(width: 300, height: 200, color: Colors.orange),
+              Container(width: 300, height: 100, color: Colors.blue),
+              Positioned(
                 child: Container(
-                    width: 100,
-                    height: 50,
-                    color: Colors.purple,
-                    child: const Center(child: Text("positioned"))),
-                // top: 50,
+                  width: 100,
+                  height: 50,
+                  color: Colors.purple,
+                  child: const Center(
+                      child: Text(
+                    "positioned",
+                    style: TextStyle(color: Colors.white),
+                  )),
+                ),
+                top: 40,
                 left: 50,
-                bottom: 50)
-          ]),
+              )
+            ],
+          ),
         ));
   }
 }
