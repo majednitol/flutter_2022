@@ -41,6 +41,8 @@ dependencies:
   liquid_pull_to_refresh: ^3.0.1
   http: ^0.13.4
   shared_preferences: ^2.0.13
+  firebase_auth: ^3.3.11
+  firebase_core: ^1.13.1
 
 dev_dependencies:
   flutter_test:
