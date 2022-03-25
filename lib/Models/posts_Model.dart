@@ -36,3 +36,6 @@ class PostsModel {
     return map;
   }
 }
+
+
+
