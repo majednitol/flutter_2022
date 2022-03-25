@@ -1,3 +1,7 @@
+/// userId : 1
+/// id : 1
+/// title : "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"
+/// body : "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
 
 class PostsModel {
   PostsModel({
@@ -21,7 +25,15 @@ class PostsModel {
   int? _id;
   String? _title;
   String? _body;
-
+PostsModel copyWith({  int? userId,
+  int? id,
+  String? title,
+  String? body,
+}) => PostsModel(  userId: userId ?? _userId,
+  id: id ?? _id,
+  title: title ?? _title,
+  body: body ?? _body,
+);
   int? get userId => _userId;
   int? get id => _id;
   String? get title => _title;
