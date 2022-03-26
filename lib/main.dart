@@ -1,59 +1,78 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-
 import 'package:http/http.dart' as http;
-
-
 
 void main() {
   runApp(MaterialApp(
-    home: HomePage(),
+    home: ExampleTwo(),
   ));
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class ExampleTwo extends StatefulWidget {
+  const ExampleTwo({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  _ExampleTwoState createState() => _ExampleTwoState();
 }
 
-class _HomePageState extends State<HomePage> {
-  List<PostsModel> postList = [];
-  Future<List<PostsModel>> getApi() async {
-    final response = await http.get(Uri.parse(""));
+class _ExampleTwoState extends State<ExampleTwo> {
+  List<Photos> photosList = [];
+
+  Future<List<Photos>> getPhotos() async {
+    final response = await http
+        .get(Uri.parse('https://jsonplaceholder.typicode.com/photos'));
     var data = jsonDecode(response.body.toString());
+
+    print(data);
     if (response.statusCode == 200) {
       for (Map i in data) {
-        postList.add(PostsModel.fromJson(i));
+        Photos photos = Photos(title: i['title'], url: i['url'], id: i['id']);
+        photosList.add(photos);
       }
-      return postList;
+      return photosList;
     } else {
-      return postList;
+      return photosList;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: getApi(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return CircularProgressIndicator();
-          } else {
-            return ListView.builder(
-                itemCount: postList.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    child: Column(
-                      children: [
-                        Text("title",style: TextStyle(fontSize: 15),),SizedBox(height: 3,)
-                      ],
-                    ),
-                  );
-                });
-          }
-        });
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('array json '),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: FutureBuilder(
+                future: getPhotos(),
+                builder: (context, AsyncSnapshot<List<Photos>> snapshot) {
+                  return ListView.builder(
+                      itemCount: photosList.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          leading: CircleAvatar(
+                            backgroundImage: NetworkImage(
+                                photosList[index].url.toString()),
+                          ),
+                          subtitle:
+                              Text(snapshot.data![index].title.toString()),
+                          title: Text('Notes id:' +
+                              snapshot.data![index].id.toString()),
+                        );
+                      });
+                }),
+          ),
+        ],
+      ),
+    );
   }
+}
+
+class Photos {
+  String title, url;
+  int id;
+  Photos({required this.title, required this.url, required this.id});
 }
