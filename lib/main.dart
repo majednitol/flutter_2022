@@ -88,3 +88,9 @@ class _HomePageState extends State<HomePage> {
             }));
   }
 }
+
+class PostsModel {
+  String title;
+  String body;
+ PostsModel({required this.title, required this.body, });
+}
