@@ -54,8 +54,8 @@ class _ExampleTwoState extends State<ExampleTwo> {
                       itemBuilder: (context, index) {
                         return ListTile(
                           leading: CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                photosList[index].url.toString()),
+                            backgroundImage:
+                                NetworkImage(photosList[index].url.toString()),
                           ),
                           subtitle:
                               Text(snapshot.data![index].title.toString()),
