@@ -25,7 +25,6 @@ class _ExampleThreeState extends State<ExampleThree> {
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       for (Map i in data) {
-        print(i['name']);
         userList.add(UserModel.fromJson(i));
       }
       return userList;
