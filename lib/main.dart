@@ -6,6 +6,10 @@ import 'package:http/http.dart' as http;
 void main() {
   runApp(MaterialApp(
     home: ExampleFour(),
+    theme: ThemeData(
+      primarySwatch: Colors.purple,
+    ),
+    debugShowCheckedModeBanner: false,
   ));
 }
 
@@ -32,7 +36,7 @@ class _ExampleFourState extends State<ExampleFour> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Api Course'),
+        title: Text('Get Api  without model '),
       ),
       body: Column(
         children: [
