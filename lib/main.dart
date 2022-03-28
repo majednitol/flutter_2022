@@ -9,32 +9,40 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
+      // Remove the debug banner
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      title: 'Flutter Example',
+      home: MyHomePage(),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  // create TimeOfDay variable
-  TimeOfDay _timeOfDay = TimeOfDay(hour: 0, minute: 00); // 12:00
+class _MyHomePageState extends State<MyHomePage> {
+  DateTime? _selectedDate;
 
-  // show time picker method
-  void _showTimePicker() {
-    showTimePicker(
-      context: context,
-      initialTime: TimeOfDay.now(),
-    ).then((value) {
+  void _presentDatePicker() {
+    // showDatePicker is a pre-made funtion of Flutter
+    showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(2020),
+            lastDate: DateTime.now())
+        .then((pickedDate) {
+      // Check if no date is selected
+      if (pickedDate == null) {
+        return;
+      }
       setState(() {
-        _timeOfDay = value!;
+        // using state so that the UI will be rerendered when date is picked
+        _selectedDate = pickedDate;
       });
     });
   }
@@ -42,43 +50,27 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            // display the chosen time
-            Text(
-              _timeOfDay.format(context).toString(),
-              style: TextStyle(fontSize: 50),
-            ),
-
-            Text(
-              _timeOfDay.format(context).toString(),
-              style: TextStyle(fontSize: 50),
-            ),
-
-            // button
-            MaterialButton(
-              onPressed: _showTimePicker,
-              child: const Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Text('PICK TIME',
-                    style: TextStyle(color: Colors.white, fontSize: 30)),
-              ),
-              color: Colors.blue,
-            ),
-            MaterialButton(
-              onPressed: _showTimePicker,
-              child: const Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Text('PICK date',
-                    style: TextStyle(color: Colors.white, fontSize: 30)),
-              ),
-              color: Colors.blue,
-            )
-          ],
-        ),
+      appBar: AppBar(
+        title: const Text('Example'),
       ),
+      body: Column(children: [
+        // Show the Date Picker when this button clicked
+        ElevatedButton(
+            onPressed: _presentDatePicker, child: const Text('Select Date')),
+
+        // display the selected date
+        Container(
+          padding: const EdgeInsets.all(30),
+          child: Center(
+            child: Text(
+              _selectedDate != null
+                  ? _selectedDate.toString()
+                  : 'No date selected!',
+              style: const TextStyle(fontSize: 30),
+            ),
+          ),
+        )
+      ]),
     );
   }
 }
