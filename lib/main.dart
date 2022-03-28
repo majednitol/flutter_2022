@@ -25,7 +25,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   // create TimeOfDay variable
-  TimeOfDay _timeOfDay = TimeOfDay(hour: 8, minute: 30);
+  TimeOfDay _timeOfDay = TimeOfDay(hour: 0, minute: 00); // 12:00
 
   // show time picker method
   void _showTimePicker() {
@@ -52,6 +52,11 @@ class _HomePageState extends State<HomePage> {
               style: TextStyle(fontSize: 50),
             ),
 
+            Text(
+              _timeOfDay.format(context).toString(),
+              style: TextStyle(fontSize: 50),
+            ),
+
             // button
             MaterialButton(
               onPressed: _showTimePicker,
@@ -62,6 +67,15 @@ class _HomePageState extends State<HomePage> {
               ),
               color: Colors.blue,
             ),
+            MaterialButton(
+              onPressed: _showTimePicker,
+              child: const Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Text('PICK date',
+                    style: TextStyle(color: Colors.white, fontSize: 30)),
+              ),
+              color: Colors.blue,
+            )
           ],
         ),
       ),
