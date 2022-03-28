@@ -47,10 +47,6 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             // display the chosen time
-            Text(
-              _timeOfDay.format(context).toString(),
-              style: TextStyle(fontSize: 50),
-            ),
 
             Text(
               _timeOfDay.format(context).toString(),
@@ -67,15 +63,6 @@ class _HomePageState extends State<HomePage> {
               ),
               color: Colors.blue,
             ),
-            MaterialButton(
-              onPressed: _showTimePicker,
-              child: const Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Text('PICK date',
-                    style: TextStyle(color: Colors.white, fontSize: 30)),
-              ),
-              color: Colors.blue,
-            )
           ],
         ),
       ),
