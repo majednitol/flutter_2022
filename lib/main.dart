@@ -26,6 +26,8 @@ class HomePage extends StatelessWidget {
               Container(width: 300, height: 200, color: Colors.orange),
               Container(width: 300, height: 100, color: Colors.blue),
               Positioned(
+                top: 40,
+                left: 50,
                 child: Container(
                   width: 100,
                   height: 50,
@@ -36,14 +38,9 @@ class HomePage extends StatelessWidget {
                     style: TextStyle(color: Colors.white),
                   )),
                 ),
-                top: 40,
-                left: 50,
               )
             ],
           ),
         ));
   }
 }
-
-
-
