@@ -1,12 +1,17 @@
-class PostsModel {
+class Jjjj {
   int? userId;
   int? id;
   String? title;
   String? body;
 
-  PostsModel({this.userId, this.id, this.title, this.body});
+  Jjjj({this.userId, this.id, this.title, this.body});
 
-  factory PostsModel.fromJson( dynamic json) => PostsModel(
+  @override
+  String toString() {
+    return 'Jjjj(userId: $userId, id: $id, title: $title, body: $body)';
+  }
+
+  factory Jjjj.fromJson(Map<String, dynamic> json) => Jjjj(
         userId: json['userId'] as int?,
         id: json['id'] as int?,
         title: json['title'] as String?,
@@ -20,13 +25,13 @@ class PostsModel {
         'body': body,
       };
 
-  PostsModel copyWith({
+  Jjjj copyWith({
     int? userId,
     int? id,
     String? title,
     String? body,
   }) {
-    return PostsModel(
+    return Jjjj(
       userId: userId ?? this.userId,
       id: id ?? this.id,
       title: title ?? this.title,
@@ -34,6 +39,3 @@ class PostsModel {
     );
   }
 }
-
-
-
